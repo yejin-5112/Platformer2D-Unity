@@ -52,7 +52,8 @@ public class Player : MonoBehaviour
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
         }
 
-        isGrounded = Physics2D.Raycast(transform.position, transform.Vector2.dowm, groundDistance, groundLayer);
+        // isGrounded = Physics2D.Raycast(transform.position, Vector2.dowm, groundDistance, groundLayer);
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundLayer);
     }
     private void OnDrawGizmos()
     {
