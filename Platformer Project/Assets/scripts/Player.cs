@@ -30,13 +30,15 @@ public class Player : MonoBehaviour
     private bool facingRight = true;
     private int facingDirection = 1;
 
-    public Animator animator;
+    public Animator anim;
     private bool isMove;
 
     // Start is called before the first frame update
     // 첫 프레임이 불러지기 전에 (한번) 시작한다
     void Start()
     {
+
+        anim = GetComponent<Animator>();
         rigidbody2D = GetComponent<Rigidbody2D>();
 
         // 현재 내 위치 <= 새로운 x, y 저장하는 데이터 타입 (현재 x좌표, 10, y좌표)
@@ -61,19 +63,11 @@ public class Player : MonoBehaviour
 
         HandleAnimation();
         CollisionCheck();
-
         HandleInput();
         HandleFlip();
         Move();
+
         FallDownCheck();
-
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
-        {
-            // 점프 : Y Position_rigidbody Y velocity를 점프 파워만큼 올려주면 되다
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpForce);
-        }
 
     }
 
@@ -91,12 +85,12 @@ public class Player : MonoBehaviour
         //rigidbody.velocity : 현재 rigidbody 속도 = 0 움직이지 않는 상태, 속도 = 1 움직이는 상태
         isMove = rigidbody2D.velocity.x != 0;
 
-        animator.SetBool("isMove", isMove);
-        animator.SetBool("isGrounded", isGrounded);
+        anim.SetBool("isMove", isMove);
+        anim.SetBool("isGrounded", isGrounded);
 
         //SetFloat 함수에 의해서 y최대 일 때 1로 변환.. y최소일 때 -1로 변환
         //점프키를 누르면 순간적으로 y 높이 증가, 중력에 의해서 점점 y 속도 -까지 내려감
-        animator.SetFloat("yVelocity", rigidbody2D.velocity.y);
+        anim.SetFloat("yVelocity", rigidbody2D.velocity.y);
     }
 
     /// <summary>
@@ -125,9 +119,7 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
-
-        //왼쪽 방향으로 바라보고 있을 때
-        else if (!facingRight&& moveInput > 0)
+        else if (!facingRight && moveInput > 0)
         {
             Flip();
         }
