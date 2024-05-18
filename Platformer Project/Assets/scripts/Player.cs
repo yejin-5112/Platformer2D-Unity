@@ -112,9 +112,8 @@ public class Player : MonoBehaviour
         JumpButten();
     }
 
-    private void HandleFlip ()
+    private void HandleFlip()
     {
-        //오른쪽 방향으로 바라보고 있을 때
         if (facingRight && moveInput < 0)
         {
             Flip();
@@ -124,8 +123,7 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
-
-    private void Flip ()
+    private void Flip()
     {
         facingDirection = facingDirection * -1;
         facingRight = !facingRight;
