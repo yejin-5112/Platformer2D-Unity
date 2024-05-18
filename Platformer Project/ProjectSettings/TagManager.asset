@@ -48,6 +48,9 @@ TagManager:
   - name: tilemap
     uniqueID: 1247058273
     locked: 0
+  - name: Trap
+    uniqueID: 491807481
+    locked: 0
   - name: player
     uniqueID: 1457187259
     locked: 0
