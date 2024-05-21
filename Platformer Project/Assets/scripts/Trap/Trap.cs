@@ -9,9 +9,7 @@ public class Trap : MonoBehaviour
 
     protected private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
+        if (collision.GetComponent<Player>() != null)
             Debug.Log("Player가 함정에 피격 당함. (Trigger충돌)");
-        }
     }
 }
